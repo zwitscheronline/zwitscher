@@ -1,4 +1,4 @@
 <script>
 </script>
 
-<div></div>
+<div class="w-full"></div>

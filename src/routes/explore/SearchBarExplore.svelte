@@ -3,5 +3,5 @@
 </script>
 
 <main class="w-full mb-4 mt-1">
-	<Input class="w-full mx-auto rounded-full" placeholder="Search Zwitscher ..."/>
+	<Input class="w-[90%] mx-auto rounded-full" placeholder="Search Zwitscher ..."/>
 </main>

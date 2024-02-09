@@ -5,18 +5,18 @@
 
 </script>
 
-<div class="min-w-screen h-full overflow-y-scroll overflow-x-clip bg-background">
-	<div class="flex h-full">
-		<div class="w-1/3">
+<div class="min-w-screen h-full bg-background">
+	<div class="h-full">
+		<div class="hidden xl:block fixed z-20 inset-0 w-1/3 h-full overflow-y-auto pr-6">
 			<LeftBar />
 		</div>
-		<div class="w-[0.5px] bg-gray-400"></div>
-		<main class="w-1/3">
+		<main class="flex px-[33%] h-full">
+			<div class="w-[0.5px] h-screen bg-gray-400 z-20"/>
 			<slot />
+			<div class="w-[0.5px] h-screen bg-gray-400 z-20"/>
 		</main>
-		<div class="w-[0.5px] bg-gray-400"></div>
 	</div>
-	<footer class="absolute bottom-0 flex h-10 w-full justify-center">
+	<footer class="flex h-20 w-full justify-center bg-background items-center">
 		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
 	</footer>
 </div>

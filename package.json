@@ -43,8 +43,10 @@
 		"@auth/sveltekit": "^0.12.2",
 		"@clerk/clerk-js": "^4.69.1",
 		"bits-ui": "^0.17.0",
+		"boxicons": "^2.1.4",
 		"clerk-sveltekit": "^0.4.1",
 		"clsx": "^2.1.0",
+		"date-fns": "^3.3.1",
 		"lucide-svelte": "^0.322.0",
 		"tailwind-merge": "^2.2.1",
 		"tailwind-variants": "^0.1.20"

@@ -2,20 +2,20 @@
 	import { onMount } from 'svelte';
 	import PostExplore from './PostExplore.svelte';
 	import type { Post } from '../../types/post';
+
 	let posts: Post[] = [];
 
 	onMount(async () => {
 		const response = await fetch('http://localhost:8080/posts');
-		const data = await response.json();
-		posts = data;
-		console.log(posts[0]);
+		posts = await response.json();
 	});
 </script>
 
-	<div>
+	<div class="w-full h-full bg-background">
 		{#if posts.length > 0}
 			{#each posts as post}
 				<PostExplore post={post} />
+				<div class="w-full h-[0.5px] bg-gray-400"></div>
 			{/each}
 		{/if}
 	</div>

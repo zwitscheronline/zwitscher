@@ -5,7 +5,7 @@
 </script>
 
 <div class="w-full h-full overflow-y-scroll overflow-x-clip bg-background">
-		<main class="mx-auto w-[90%]">
+		<main class="mx-auto">
 			<SearchBarExplore />
 			<slot />
 		</main>
