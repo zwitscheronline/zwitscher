@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Post } from '../../types/post';
-	import { getTime } from 'date-fns';
+	import { getTime } from 'date-fns/getTime';
 
 	export let post: Post;
 	const now = Date.now();
@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="w-full min-w-fit p-4">
+<div class="w-full min-w-fit px-8 py-4 sm:px-4">
 	<div class="flex flex-col">
 		<div class="flex gap-4 items-start">
 			<div class="w-11 h-11 rounded-full bg-pink-300" />
