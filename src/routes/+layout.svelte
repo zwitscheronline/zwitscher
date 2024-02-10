@@ -7,10 +7,10 @@
 
 <div class="min-w-screen h-full bg-background">
 	<div class="h-full">
-		<div class="hidden xl:block fixed z-20 inset-0 w-1/3 h-full overflow-y-auto pr-6">
+		<div class="hidden sm:block fixed z-20 inset-0 w-fit min-w-[120px] lg:w-1/3 h-full overflow-y-auto pr-6">
 			<LeftBar />
 		</div>
-		<main class="flex px-[33%] h-full">
+		<main class="flex px-0 sm:px-[15%] md:px-[15%] lg:pl-[25%] lg:pr-[35%] xl:px-[33%] h-full">
 			<div class="w-[0.5px] h-screen bg-gray-400 z-20"/>
 			<slot />
 			<div class="w-[0.5px] h-screen bg-gray-400 z-20"/>
