@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { siteConfig } from '../../config/site';
+</script>
+
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About this app" />
@@ -8,8 +12,7 @@
 
 	<p>
 		This is a small Social Media app built with SvelteKit for a university project. You can get the
-		code for this app on <a href="github.com/zwitscheronline/zwitscher">Github</a>. To run the
-		frontend:
+		code for this app on <a href={siteConfig.external.github}>Github</a>. To run the frontend:
 	</p>
 
 	<pre>git clone https://github.com/zwitscheronline/zwitscher.git</pre>
