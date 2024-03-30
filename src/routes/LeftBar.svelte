@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/logo.svg';
 	import { Button } from '$lib/components/ui/button';
 	import LoginButton from './LoginButton.svelte';
 </script>
@@ -7,7 +7,7 @@
 <header class="h-screen w-full">
 	<div class="w-full mx-auto lg:w-4/5 xl:w-2/5 h-full flex flex-col items-start justify-between lg:ml-auto lg:mr-0 pb-4">
 		<div class="flex flex-col justify-between h-3/5 w-full gap-2">
-			<div class="px-4">
+			<div class="px-4 mt-2.5">
 				<a href="/">
 					<img class="w-full sm:w-10" src={logo} alt="SvelteKit" />
 				</a>

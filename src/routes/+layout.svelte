@@ -2,6 +2,7 @@
 	import '../app.pcss';
 	import './styles.css';
 	import LeftBar from './LeftBar.svelte';
+	import Footer from './Footer.svelte';
 </script>
 
 <div class="min-w-screen h-full bg-background">
@@ -12,14 +13,14 @@
 			<LeftBar />
 		</div>
 		<main
-			class="flex h-full px-0 sm:px-[15%] md:pl-[15%] md:pr-[33%] lg:pl-[25%] lg:pr-[35%] xl:px-[33%]"
+			class="flex h-full px-0 sm:px-[15%] md:pl-[15%] md:pr-[33%] lg:pl-[25%] lg:pr-[35%] xl:px-[33%] xl:min-w-[33%]"
 		>
 			<div class="z-20 h-screen w-[0.5px] bg-gray-400" />
 			<slot />
+			<div class="w-full absolute bottom-0 block sm:hidden">
+				<Footer />
+			</div>
 			<div class="z-20 h-screen w-[0.5px] bg-gray-400" />
 		</main>
 	</div>
-	<footer class="flex h-20 w-full items-center justify-center bg-background">
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
 </div>

@@ -42,6 +42,7 @@
 		"@auth/core": "^0.26.2",
 		"@auth/sveltekit": "^0.12.2",
 		"@clerk/clerk-js": "^4.69.1",
+		"@sveltejs/adapter-vercel": "^5.2.0",
 		"bits-ui": "^0.17.0",
 		"boxicons": "^2.1.4",
 		"clerk-sveltekit": "^0.4.1",
