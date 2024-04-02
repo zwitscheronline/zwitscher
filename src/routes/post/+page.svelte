@@ -1,7 +1,14 @@
-<script lang="ts">
-
+<script>
+	import { goto, pushState } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
+	onMount(() => {
+		goto('/explore');
+		pushState('', {
+			showModal: true,
+			postModalPreviousRoute: '/post',
+		});
+	})
 </script>
 
-<div class="w-full bg-background">
-	<h1 class="text-4xl text-center text-black py-8 font-bold">Post</h1>
-</div>
+<div></div>
