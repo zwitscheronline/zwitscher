@@ -1,7 +1,6 @@
 <script lang="ts">
 	import logo from '$lib/images/logo.svg';
 	import { Button } from '$lib/components/ui/button';
-	import LoginButton from './LoginButton.svelte';
 	import {pushState } from '$app/navigation';
 
 	// let currentRoute = $page.url.pathname;
@@ -73,7 +72,9 @@
 			</div>
 		</div>
 		<div class="flex flex-col justify-between w-full gap-2 lg:items-start items-end">
-			<LoginButton />
+			<Button>
+				Login
+			</Button>
 		</div>
 	</div>
 </header>
