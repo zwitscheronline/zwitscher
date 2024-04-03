@@ -22,48 +22,48 @@
 				</a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="explore">
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/explore">
 					<i class='bx bx-search text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Explore</span>
 				</a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="notifications"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/notifications"><i
 					class='bx bx-bell text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Nofications</span></a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="messages"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/messages"><i
 					class='bx bx-message-square-check  text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Messages</span></a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="profile"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/profile"><i
 					class='bx bx-user text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Profile</span></a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="bookmarks"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/bookmarks"><i
 					class='bx bx-bookmark text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Bookmarks</span></a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="groups"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/groups"><i
 					class='bx bx-group text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Groups</span></a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="lists"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/lists"><i
 					class='bx bx-list-ul text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Lists</span></a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="news"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/news"><i
 					class='bx bx-news text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">News</span></a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" href="settings"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/settings"><i
 					class='bx bx-cog text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Settings</span></a>
 			</div>

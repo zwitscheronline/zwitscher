@@ -21,7 +21,7 @@
 			<div class="z-20 h-auto w-0.5 bg-border" />
 			<slot />
 			{#if $page.state.showModal}
-				<PostModal close={() => history.back()} submit={() => {}} open />
+				<PostModal close={() => {history.back()}} submit={() => console.log("SUBMITTED")} open />
 			{/if}
 			<div class="w-full absolute bottom-0 block sm:hidden">
 				<Footer />
