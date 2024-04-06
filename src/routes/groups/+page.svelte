@@ -71,14 +71,15 @@
 <div class="w-full h-full min-h-screen bg-background">
 	<div class="w-full h-full flex flex-col gap-4 mt-2">
 		<div class="w-full flex items-center px-[5%] gap-4">
-			<Button variant="outline" class="bg-background border-0 rounded-full w-10 h-10"><i
+			<Button variant="outline" class="bg-background border-0 rounded-full w-10 h-10" on:click={() => history.back()}><i
 				class='bx bx-arrow-back text-black'></i></Button>
 			<h1 class="w-full text-2xl text-black font-bold text-left">Groups</h1>
 		</div>
 		<h1 class="w-full text-xl text-black font-black text-left px-[5%]">Discover New Groups</h1>
 		<div class="w-full h-full flex flex-col">
 			{#each groups as group}
-				<Button on:click={() => {goto(`/groups/${group.id}`)}} variant="ghost" class="w-full h-36 flex pl-4 hover:bg-border/50">
+				<Button on:click={() => {goto(`/groups/${group.id}`)}} variant="ghost"
+								class="w-full h-36 flex pl-4 hover:bg-border/50">
 					<div class="w-full h-36 flex items-center gap-4 hover:bg-border/50">
 						<div class="max-w-28 max-h-28 bg-pink-300 rounded-xl flex items-center justify-center overflow-hidden">
 							<img src={group.image} alt="group" class="object-cover rounded-xl" />

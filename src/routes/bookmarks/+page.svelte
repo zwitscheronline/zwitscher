@@ -2,6 +2,7 @@
 
 	import Tweet from './Tweet.svelte';
 	import { DeleteAllPopover } from '$lib/components/ui/bookmarks';
+	import { Button } from '$lib/components/ui/button';
 
 	const sampleBookmarks = [
 		{
@@ -50,6 +51,8 @@
 
 <div class="w-full bg-background">
 	<div class="w-full flex items-center px-[5%]">
+		<Button variant="outline" class="bg-background border-0 rounded-full w-10 h-10" on:click={() => history.back()}><i
+			class='bx bx-arrow-back text-black'></i></Button>
 		<h1 class="w-full text-2xl text-black font-bold text-left">Bookmarks</h1>
 		<DeleteAllPopover />
 	</div>
