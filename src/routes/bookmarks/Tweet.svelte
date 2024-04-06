@@ -10,7 +10,6 @@
 
 	export let likes: number;
 	export let comments: number;
-	export let shares: number;
 
 	export let media: string | null;
 
@@ -32,7 +31,7 @@
 				</div>
 				<div class="text-black font-normal text-md">{content}</div>
 				{#if media}
-					<img src={media} alt="media" class="w-full h-40 object-cover rounded-xl mt-4" />
+					<img src={media} alt="media" class="w-full h-fit object-cover rounded-xl mt-4" />
 				{/if}
 			</div>
 		</div>

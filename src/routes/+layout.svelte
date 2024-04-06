@@ -31,7 +31,7 @@
 			<div class="z-20 h-auto w-0.5 bg-border" />
 		</main>
 		<div
-			class="fixed inset-0 z-20 hidden h-full w-fit min-w-[120px] pr-6 lg:block lg:w-[25%] xl:w-[33%] xl:min-w-[33%] ml-auto"
+			class="fixed inset-0 z-20 hidden h-full w-fit min-w-[120px] pr-6 lg:block lg:w-[25%] xl:w-[33%] xl:min-w-[33%] ml-auto bg-white"
 		>
 		</div>
 	</div>
