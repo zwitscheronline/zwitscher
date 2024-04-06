@@ -1,69 +1,68 @@
 <script lang="ts">
 
 	import { Button } from '$lib/components/ui/button';
-	import Group1Image from '$lib/images/black-purple-liquid.jpg';
 	import { goto } from '$app/navigation';
 
 	let groups = [
 		{
 			id: 'group1',
-			name: 'Group 1',
-			members: 10,
-			image: Group1Image
+			name: 'The Group',
+			members: 1000,
+			image: 'https://source.unsplash.com/Sj0iMtq_Z4w'
 		},
 		{
 			id: 'group2',
-			name: 'Group 2',
-			members: 20,
-			image: Group1Image
+			name: 'Hargainers',
+			members: 9999,
+			image: 'https://source.unsplash.com/sHfo3WOgGTU'
 		},
 		{
 			id: 'group3',
-			name: 'Group 3',
-			members: 30,
-			image: Group1Image
+			name: 'Boulder Climbers',
+			members: 5665,
+			image: 'https://source.unsplash.com/Ns8trMR4Om8'
 		},
 		{
 			id: 'group4',
-			name: 'Group 4',
-			members: 40,
-			image: Group1Image
+			name: 'Group Study',
+			members: 1206,
+			image: 'https://source.unsplash.com/g1Kr4Ozfoac'
 		},
 		{
 			id: 'group5',
-			name: 'Group 5',
-			members: 50,
-			image: Group1Image
+			name: 'Trackers',
+			members: 339,
+			image: 'https://source.unsplash.com/3ngGTxFpfi4'
 		},
 		{
 			id: 'group6',
-			name: 'Group 6',
-			members: 60,
-			image: Group1Image
+			name: 'Home Cooks',
+			members: 64,
+			image: 'https://source.unsplash.com/KPDbRyFOTnE'
 		},
 		{
 			id: 'group7',
-			name: 'Group 7',
-			members: 70,
-			image: Group1Image
+			name: 'DIYers',
+			members: 1020,
+			image: 'https://source.unsplash.com/JE4iHJE-knI'
 		},
 		{
 			id: 'group8',
-			name: 'Group 8',
-			members: 80,
-			image: Group1Image
+			name: 'Gardening Club',
+			members: 400,
+			image: 'https://source.unsplash.com/sFydXGrt5OA'
 		},
 		{
 			id: 'group9',
-			name: 'Group 9',
-			members: 90,
-			image: Group1Image
+			name: 'Philosophers',
+			members: 1255,
+			image: 'https://source.unsplash.com/9SKhDFnw4c4'
 		},
 		{
 			id: 'group10',
-			name: 'Group 10',
-			members: 100,
-			image: Group1Image
+			name: 'The Book Club',
+			members: 124,
+			image: 'https://source.unsplash.com/McX3XuJRsUM'
 		}
 	];
 </script>

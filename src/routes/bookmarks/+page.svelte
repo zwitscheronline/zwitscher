@@ -7,7 +7,8 @@
 	const sampleBookmarks = [
 		{
 			author: "Florance Pew",
-			content: "I just published a new article on my blog. Check it out!",
+			content: "Just finished filming the new Dune with Denis Villeneuve. Can't wait for you all to see it! #Dune #Arrakis #LisanALGaib",
+			media: "https://source.unsplash.com/O35rT6OytRo/",
 			href: "profile/FlorancePew",
 			date: new Date(),
 			likes: 100,
@@ -40,6 +41,7 @@
 			author: "Elon Mask",
 			content: "Cybertruck is the future. Get yours today! (Dont drive during rain... might rust)",
 			href: "profile/ElonMask",
+			media: "https://source.unsplash.com/iuh3adzHMyM/",
 			date: new Date(),
 			likes: 100,
 			retweets: 50,
