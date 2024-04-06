@@ -4,11 +4,13 @@
 	import LeftBar from './LeftBar.svelte';
 	import Footer from './Footer.svelte';
 	import { page } from '$app/stores';
-	import { pushState } from '$app/navigation';
 	import { PostModal } from '$lib/components/ui/post';
+	import { Toaster } from 'svelte-french-toast';
+
 </script>
 
 <div class="min-w-screen min-h-screen h-full bg-background">
+	<Toaster />
 	<div class="h-full">
 		<div
 			class="fixed inset-0 z-20 hidden h-full w-fit pr-6 sm:block md:w-1/4 lg:w-1/4 xl:w-1/4 xl:min-w-1/3 2xl:w-1/3"
@@ -29,7 +31,7 @@
 			<div class="z-20 h-auto w-0.5 bg-border" />
 		</main>
 		<div
-		class="fixed inset-0 z-20 hidden h-full w-fit min-w-[120px] pr-6 lg:block lg:w-[25%] xl:w-[33%] xl:min-w-[33%] ml-auto"
+			class="fixed inset-0 z-20 hidden h-full w-fit min-w-[120px] pr-6 lg:block lg:w-[25%] xl:w-[33%] xl:min-w-[33%] ml-auto"
 		>
 		</div>
 	</div>
