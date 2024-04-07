@@ -7,13 +7,12 @@
 	export let authorId: number;
 	export let content: string;
 	export let date: Date;
-	export let likesCount: number;
 	export let media: string | null;
 
-	export let authorName: string;
+	let authorName: string;
 
 	onMount(async () => {
-		await userAPI.fetchUser(authorId).then((userName) => authorName = userName.data)
+		await userAPI.fetchUser(authorId).then((userName) => authorName = userName.data.user.userTag)
 	})
 
 	function extractMediaInfo(inputString: string): { c: string, m: string | null } {

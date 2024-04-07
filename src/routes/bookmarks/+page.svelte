@@ -3,6 +3,7 @@
 	import Tweet from './Tweet.svelte';
 	import { DeleteAllPopover } from '$lib/components/ui/bookmarks';
 	import { Button } from '$lib/components/ui/button';
+	import ExploreTweet from '$lib/components/ui/explore/ExploreTweet.svelte';
 
 	const sampleBookmarks = [
 		{
@@ -64,13 +65,13 @@
 	<div class="w-full flex flex-col mx-auto mt-12">
 		{#each bookmarks as bm}
 			<div class="w-full group group-hover:bg-input">
-				<Bookmark author={bm.createdAt} content={bm.content} href={bm.href} date={bm.date} likes={bm.likes} comments={bm.commentCount} shares={bm.shares} media={bm.media || null}/>
+				<ExploreTweet authorId={bm.authorId} content={bm.content} date={bm.createdAt ?? new Date()} media={null}/>
 				<div class="w-full h-0.5 bg-border"></div>
 			</div>
 		{/each}
 		{#each sampleBookmarks as bm}
 		<div class="w-full group group-hover:bg-input">
-			<Tweet author={bm.author} content={bm.content} href={bm.href} date={bm.date} likes={bm.likes} comments={bm.commentCount} shares={bm.shares} media={bm.media || null}/>
+			<Tweet author={bm.author} content={bm.content} href={bm.href} date={bm.date} likes={bm.likes} comments={bm.commentCount} media={bm.media ?? null}/>
 			<div class="w-full h-0.5 bg-border"></div>
 		</div>
 		{/each}

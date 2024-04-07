@@ -13,7 +13,7 @@ authorId: string;   content: string;   date: Date;   likesCount: number;   media
 
 <div class="w-full min-h-screen">
 	{#each explore as bm}
-		<ExploreTweet authorId={bm.authorId} authorName="Unknown User" content={bm.content} date={bm.createdAt ?? new Date()} media={null} likesCount={bm.likesCount ?? 0}/>
+		<ExploreTweet authorId={bm.authorId} content={bm.content} date={bm.createdAt ?? new Date()} media={null} />
 		<div class="w-full h-0.5 bg-border"></div>
 	{/each}
 </div>
