@@ -49,6 +49,9 @@
 			commentCount: 10,
 		}
 	]
+	export let data;
+	const { bookmarks } = data;
+	console.log(bookmarks)
 </script>
 
 <div class="w-full bg-background">
@@ -59,6 +62,12 @@
 		<DeleteAllPopover />
 	</div>
 	<div class="w-full flex flex-col mx-auto mt-12">
+		{#each bookmarks as bm}
+			<div class="w-full group group-hover:bg-input">
+				<Bookmark author={bm.createdAt} content={bm.content} href={bm.href} date={bm.date} likes={bm.likes} comments={bm.commentCount} shares={bm.shares} media={bm.media || null}/>
+				<div class="w-full h-0.5 bg-border"></div>
+			</div>
+		{/each}
 		{#each sampleBookmarks as bm}
 		<div class="w-full group group-hover:bg-input">
 			<Tweet author={bm.author} content={bm.content} href={bm.href} date={bm.date} likes={bm.likes} comments={bm.commentCount} shares={bm.shares} media={bm.media || null}/>
