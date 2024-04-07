@@ -1,25 +1,57 @@
 <script lang="ts">
-	import { Button as ButtonPrimitive } from "bits-ui";
 	import { cn } from "$lib/utils";
-	import { buttonVariants, type Props, type Events } from ".";
 
-	type $$Props = Props;
-	type $$Events = Events;
+	export let variant: "primary" | "outline" | "link" = "primary";
+	export let color: "primary" | "secondary" | "danger" | "warning" | "success" = "primary";
+	export let size: "sm" | "md" | "lg" = "md";
+	let className: string | undefined = "";
+	export let onClick: () => void = () => {};
 
-	let className: $$Props["class"] = undefined;
-	export let variant: $$Props["variant"] = "default";
-	export let size: $$Props["size"] = "default";
-	export let builders: $$Props["builders"] = [];
+	let handleClick = (event: any) => {
+		event.preventDefault();
+		onClick();
+	}
+
+	let getColorStyling = (): string => {
+		let colorStyling = "";
+		if (variant === "primary") {
+			colorStyling = "bg-color text-white hover:bg-color/80"
+		} else if (variant === "outline") {
+			colorStyling = "border-2 bg-transparent text-color border-color hover:bg-color"
+		} else {
+			colorStyling = "hover:bg-color/10 text-color"
+		}
+
+		if (size === "sm") colorStyling += " text-sm py-1 px-2";
+		if (size === "md") colorStyling += " text-base py-2 px-4";
+		if (size === "lg") colorStyling += " text-lg py-3 px-6";
+
+		const clr = color === "primary" 
+			? "primary" 
+			: color === "secondary" 
+				? "clay-500" 
+				: color === "danger" 
+					? "red-500" 
+					: color === "warning" 
+						? "orange-500" 
+						: "green-500";
+
+		console.log(colorStyling.replaceAll("color", clr));
+
+		return colorStyling.replaceAll("color", clr);
+	}
+
 	export { className as class };
 </script>
 
-<ButtonPrimitive.Root
-	{builders}
-	class={cn(buttonVariants({ variant, size, className }))}
+<button
 	type="button"
-	{...$$restProps}
-	on:click
-	on:keydown
+	class={cn(
+		"w-full outline-none rounded-full ease-in-out duration-300 focus:outline-none font-bold",
+		getColorStyling(),
+		className
+	)}
+	on:click={handleClick}
 >
-	<slot />
-</ButtonPrimitive.Root>
+	<slot/>
+</button>
