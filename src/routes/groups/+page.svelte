@@ -2,6 +2,7 @@
 
 	import { Button } from '$lib/components/ui/button';
 	import { goto } from '$app/navigation';
+	import Group from '$lib/components/ui/groups/Group.svelte';
 
 	let groups = [
 		{
@@ -77,18 +78,7 @@
 		<h1 class="w-full text-xl text-black font-black text-left px-[5%]">Discover New Groups</h1>
 		<div class="w-full h-full flex flex-col">
 			{#each groups as group}
-				<Button on:click={() => {goto(`/groups/${group.id}`)}} variant="ghost"
-								class="w-full h-36 flex pl-4 hover:bg-border/50">
-					<div class="w-full h-36 flex items-center gap-4 hover:bg-border/50">
-						<div class="max-w-28 max-h-28 bg-pink-300 rounded-xl flex items-center justify-center overflow-hidden">
-							<img src={group.image} alt="group" class="object-cover rounded-xl" />
-						</div>
-						<div class="w-full h-28 flex flex-col items-start">
-							<div class="text-black font-bold text-lg">{group.name}</div>
-							<div class="text-black text-sm">{group.members} members</div>
-						</div>
-					</div>
-				</Button>
+				<Group id={group.id} name="group.name" members={group.members} image={group.image} />
 			{/each}
 		</div>
 	</div>

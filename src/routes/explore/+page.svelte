@@ -4,12 +4,13 @@
 	import type { Post } from '../../types/post';
 	import { page } from '$app/stores';
 	import { pushState } from '$app/navigation';
+	import { postAPI } from '../../api/handler';
 
 	let posts: Post[] = [];
 
 	onMount(async () => {
-		// const response = await fetch('http://localhost:8080/posts');
-		// posts = await response.json();
+		const response = await postAPI.fetchMultiple();
+		posts = await response.json();
 
 		if ($page.state.postModalPreviousRoute?.includes('/post')) {
 			console.log('show modal')

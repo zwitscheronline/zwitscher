@@ -1,7 +1,8 @@
 <script lang="ts">
 	import logo from '$lib/images/logo.svg';
 	import { Button } from '$lib/components/ui/button';
-	import {goto, pushState } from '$app/navigation';
+	import { goto, pushState } from '$app/navigation';
+	import { NewspaperIcon } from 'lucide-svelte';
 
 	// let currentRoute = $page.url.pathname;
 
@@ -9,11 +10,11 @@
 		pushState('post', {
 			showModal: true
 		});
-	}
+	};
 
 	let handleLoginClick = () => {
 		goto('/login');
-	}
+	};
 </script>
 
 <header class="h-screen w-full">
@@ -52,6 +53,12 @@
 				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/lists"><i
 					class='bx bx-list-ul text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Lists</span>
+				</a>
+			</div>
+			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
+				<a class="text-2xl text-black no-underline hover:no-underline flex" href="/news">
+					<NewspaperIcon class='text-3xl sm:mr-2'></NewspaperIcon>
+					<span class="hidden lg:block ">News</span>
 				</a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
