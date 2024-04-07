@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Post } from '../../../types/post';
-    import { postAPI } from '../../../api/handler';
 
     export let data;
 
@@ -10,29 +9,7 @@
 
     let user: any = post?.author;
 
-    let likePost = async () => {
-        if (!post) {
-            error = "Could not find post.";
-            return;
-        }
-
-        let result = null;
-
-        try {
-            result = await postAPI.like(post?.id!);
-        } catch (err) {
-            error = "An error occurred while liking the post. Please try again.";
-            return;
-        }
-
-        if (result && result.status === 200) {
-            post.likesCount! += 1;
-            return;
-        } else {
-            error = "An error occurred while liking the post. Please try again.";
-            return;
-        }
-    }
+    let likePost = async () => {}
 
     let retweet = async () => {}
 
@@ -70,7 +47,7 @@
             <span class="flex flex-row gap-1 items-center min-w-fit">
                 <i 
                     class="flex items-center justify-center bx bx-heart text-lg text-primary w-10 h-10 rounded-full hover:bg-red-300 hover:text-white duration-300 ease-in-out cursor-pointer"
-                    on:click={() => likePost()}
+                    on:click={likePost}
                 ></i>
                 <p class="text-primary text-sm font-semibold">{post.likesCount}</p>
             </span>
