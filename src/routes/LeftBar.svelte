@@ -2,17 +2,39 @@
 	import logo from '$lib/images/logo.svg';
 	import { Button } from '$lib/components/ui/button';
 	import {goto, pushState } from '$app/navigation';
+	import { userCredentials } from '../hooks/auth';
+	import type { UserCredentials } from '../types/credentials';
+	import { removeItem } from '$lib/store';
 
 	// let currentRoute = $page.url.pathname;
 
+	let user: UserCredentials|null = null;
+
 	let handlePost = () => {
-		pushState('post', {
-			showModal: true
-		});
+		goto("/post");
 	}
 
 	let handleLoginClick = () => {
 		goto('/login');
+	}
+
+	userCredentials.subscribe((value) => {
+		if (value) {
+			user = value;
+		}
+	});
+
+	let handleLogout = () => {
+		userCredentials.set(null);
+		removeItem("accessToken");
+		removeItem("refreshToken");
+		removeItem("userTag");
+		removeItem("email");
+		removeItem("userId");
+
+		goto("/");
+
+		user = null;
 	}
 </script>
 
@@ -60,17 +82,40 @@
 					<span class="hidden lg:block ">Settings</span>
 				</a>
 			</div>
-			<Button onClick={handlePost}>
+			<Button class="lg:block hidden" onClick={handlePost}>
 				Post
 			</Button>
 			<div class="lg:hidden px-4 rounded-full hover:bg-black hover:text-white text-black w-fit py-2 flex items-center">
 				<i class='bx bx-edit text-3xl sm:mr-2'></i>
 			</div>
 		</div>
+		{#if !user}
 		<div class="flex flex-col justify-between w-full gap-2 lg:items-start items-end">
-			<Button onClick={handleLoginClick}>
+			<Button class="lg:block hidden" onClick={handleLoginClick}>
 				Login
 			</Button>
+			<div class="lg:hidden px-4 rounded-full hover:bg-black hover:text-white text-black w-fit py-2 flex items-center">
+				<i class='bx bx-log-in text-3xl sm:mr-2' on:click={handleLoginClick}></i>
+			</div>
 		</div>
+		{:else}
+		<div class="bg-primary rounded-full px-4 py-2 flex flex-row justify-between items-center w-full">
+			<div class="flex flex-col items-center">
+				{#if user.userName}
+				<p class="text-lg font-bold text-white">
+					{user.userName}
+				</p>
+				{/if}
+				<p class="text-md font-bold text-white/80">
+					@{user.userTag}
+				</p>
+			</div>
+			<i 
+				class="bx bx-log-out rounded-md text-lg text-white bg-white/20 w-8 h-8 flex items-center justify-center cursor-pointer hover:bg-blue-500 ease-in-out duration-300"
+				on:click={handleLogout}
+			></i>
+		</div>
+		{/if}
+
 	</div>
 </header>
