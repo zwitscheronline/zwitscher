@@ -59,3 +59,28 @@ export async function load({ params }) {
         };
     }
 }
+
+export async function _likePost(postId: number) {
+    let result = null;
+
+    try {
+        result = await postAPI.like(postId);
+    } catch (error) {
+        return {
+            error: "Unable to like post. Please try again later.",
+            success: false,
+        };
+    }
+
+    if (result && result.status === 200) {
+        return {
+            error: null,
+            success: true,
+        };
+    } else {
+        return {
+            error: "Unable to like post. Please try again later.",
+            success: false,
+        };
+    }
+}
