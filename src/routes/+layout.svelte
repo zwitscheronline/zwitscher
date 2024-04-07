@@ -7,8 +7,28 @@
 	import { PostModal } from '$lib/components/ui/post';
 	import { Toaster } from 'svelte-french-toast';
 	import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
+	import { getItem } from '$lib/store';
+	import { userCredentials } from '../hooks/auth';
 
 	const queryClient = new QueryClient();
+
+	if (getItem("accessToken") !== null) {
+		const userTag = getItem("userTag");
+		const accessToken = getItem("accessToken");
+		const refreshToken = getItem("refreshToken");
+		const email = getItem("email");
+		const userId = getItem("userId");
+
+		if (userTag && accessToken && refreshToken && email && userId) {
+			userCredentials.set({
+				userTag,
+				accessToken,
+				refreshToken,
+				email,
+				userId: Number(userId),
+			});
+		}
+	}
 
 </script>
 
@@ -27,7 +47,7 @@
 			<div class="z-20 h-auto w-0.5 bg-border" />
 			<slot />
 			{#if $page.state.showModal}
-				<PostModal close={() => {history.back()}} submit={() => console.log("SUBMITTED")} open />
+				<PostModal close={() => {history.back()}} open />
 			{/if}
 			<div class="w-full absolute bottom-0 block sm:hidden">
 				<Footer />

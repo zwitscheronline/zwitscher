@@ -4,28 +4,45 @@
 	} from "$lib/components/ui/button";
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
-	import { writable, type Writable } from 'svelte/store';
-	import { postAPI } from '../../../../api/handler';
-	import type { CreatePost } from '../../../../types/post';
+	import { getItem } from "$lib/store";
+	import toast from "svelte-french-toast";
+	import { postAPI } from "../../../../api/handler";
+	import { goto } from "$app/navigation";
 
 	export let close: () => void;
-	export let submit: () => void;
 	export let open: boolean;
-
-	let content: Writable<string> = writable("");
 	let value: string = "";
 
-	content.subscribe((v) => {
-		value = v;
-	});
+	const handleSubmit = async () => {
+		let result = null;
 
-	const handleSubmit = () => {
-		const post: CreatePost = {
-			content: value,
-			authorId: 1,
-		};
-		postAPI.create(post);
-		close();
+		let authorIdStr = getItem("userId");
+
+		if (!authorIdStr) {
+			toast.error("You need to be logged in to post.");
+			return;
+		}
+
+		const authorId = parseInt(authorIdStr);
+
+		try {
+			result = await postAPI.create({
+				content: value,
+				authorId,
+			});
+		} catch (error) {
+			toast.error("An error occurred while posting.");
+			return;
+		}
+
+		if (result && result.status === 201) {
+			goto(`/post/${result.data.id}`);
+			toast.success("Posted successfully.");
+			close();
+		} else {
+			toast.error("An error occurred while posting.");
+			return;
+		}
 	}
 </script>
 
@@ -35,11 +52,11 @@
 			<Dialog.Title>zwitscher something to the world.</Dialog.Title>
 		</Dialog.Header>
 		<div>
-			<Textarea placeholder="What's on your mind?" maxlength={69} bind:value={value}/>
+			<Textarea placeholder="What's on your mind?" bind:value={value} maxlength={69} />
 		</div>
 		<Dialog.Footer>
-			<Button variant="outline" on:click={close}>Cancel</Button>
-			<Button on:click={() => {handleSubmit}}>Save changes</Button>
+			<Button type="button" variant="outline" color="primary" onClick={close}>Cancel</Button>
+			<Button type="submit" variant="primary" onClick={() => handleSubmit()}>Post</Button>
 		</Dialog.Footer>
 	</Dialog.Content>
 </Dialog.Root>
