@@ -1,5 +1,12 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
+
+	export let data;
+
+	if (data.error) {
+		goto('/explore');
+	}
 </script>
 
 <div class="h-full min-h-screen w-full bg-background">
@@ -8,10 +15,14 @@
 			<Button
 				variant="outline"
 				class="h-10 w-10 rounded-full border-0 bg-background"
-				on:click={() => history.back()}><i class="bx bx-arrow-back text-black"></i></Button
+				on:click={() => history.back()}
+			><i class="bx bx-arrow-back flex items-center justify-center text-black"></i></Button
 			>
 			<h1 class="w-full text-left text-2xl font-bold text-black">Profile</h1>
 		</div>
-		<div class="mx-auto text-3xl font-bold text-black">Username</div>
+		{#if data.user?.userName}
+			<p class="mx-auto text-3xl font-bold text-black">{data.user?.userName}</p>
+		{/if}
+		<p class="mx-auto text-xl font-semibold text-primary/80">@{data.user?.userTag}</p>
 	</div>
 </div>

@@ -74,7 +74,7 @@
                 type="submit"
                 onClick={() => handleFormSubmit()}
             >
-                Login
+                Post
             </Button>
         </form>
 	</div>

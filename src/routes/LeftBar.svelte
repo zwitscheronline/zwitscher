@@ -4,7 +4,7 @@
 	import {goto} from '$app/navigation';
 	import { userCredentials } from '../hooks/auth';
 	import type { UserCredentials } from '../types/credentials';
-	import { removeItem } from '$lib/store';
+	import { getItem, removeItem } from '$lib/store';
 	import { NewspaperIcon } from 'lucide-svelte';
 
 	// let currentRoute = $page.url.pathname;
@@ -54,7 +54,7 @@
 				</a>
 			</div>
 			<div class="px-4 rounded-full hover:bg-gray-200 w-fit py-2 flex items-center">
-				<a class="text-2xl text-black no-underline hover:no-underline flex" data-sveltekit-preload-data  href="/profile"><i
+				<a class="text-2xl text-black no-underline hover:no-underline flex" data-sveltekit-preload-data  href={getItem('userId') ? `profile/${getItem('userId')}` : '/profile'}><i
 					class='bx bx-user text-3xl sm:mr-2'></i>
 					<span class="hidden lg:block ">Profile</span>
 				</a>
