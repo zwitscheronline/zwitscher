@@ -22,9 +22,9 @@
 			colorStyling = "hover:bg-color/10 text-color"
 		}
 
-		if (size === "sm") colorStyling += " text-sm py-1 px-2";
-		if (size === "md") colorStyling += " text-base py-2 px-4";
-		if (size === "lg") colorStyling += " text-lg py-3 px-6";
+		if (size === "sm") colorStyling += " text-sm py-2 px-2";
+		if (size === "md") colorStyling += " text-base py-3 px-4";
+		if (size === "lg") colorStyling += " text-lg py-4 px-6";
 
 		const clr = color === "primary" 
 			? "primary" 
@@ -35,8 +35,6 @@
 					: color === "warning" 
 						? "orange-500" 
 						: "green-500";
-
-		console.log(colorStyling.replaceAll("color", clr));
 
 		return colorStyling.replaceAll("color", clr);
 	}
