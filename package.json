@@ -43,6 +43,7 @@
 		"@auth/sveltekit": "^0.12.2",
 		"@sveltejs/adapter-vercel": "^5.2.0",
 		"@sveltestack/svelte-query": "^1.6.0",
+		"axios": "^1.6.8",
 		"bits-ui": "^0.17.0",
 		"boxicons": "^2.1.4",
 		"clsx": "^2.1.0",

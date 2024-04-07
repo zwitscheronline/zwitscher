@@ -4,6 +4,7 @@
 	export let variant: "primary" | "outline" | "link" = "primary";
 	export let color: "primary" | "secondary" | "danger" | "warning" | "success" = "primary";
 	export let size: "sm" | "md" | "lg" = "md";
+	export let type: "button" | "submit" | "reset" = "button";
 	let className: string | undefined = "";
 	export let onClick: () => void = () => {};
 
@@ -43,7 +44,7 @@
 </script>
 
 <button
-	type="button"
+	type={type}
 	class={cn(
 		"w-full outline-none rounded-full ease-in-out duration-300 focus:outline-none font-bold",
 		getColorStyling(),

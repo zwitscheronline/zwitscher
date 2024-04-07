@@ -1,11 +1,14 @@
 <script lang="ts">
 	import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
+	import { authAPI } from "../../api/handler";
 
     let usertag: string = "";
     let password: string = "";
 
-    let handleFormSubmit = () => {
+    let handleFormSubmit = async () => {
+        const result = await authAPI.login(usertag, password);
+        console.log(result);
         console.log('Form submitted');
     }
 </script>
@@ -20,7 +23,7 @@
                     class="font-bold text-blue-500 hover:text-blue-400 ease-in-out duration-300 visited:text-blue-300">here</a>.
             </p>
         </div>
-        <form on:submit={handleFormSubmit} class="flex flex-col gap-4">
+        <form on:submit|preventDefault class="flex flex-col gap-4">
             <Input
                 id="usertag-input"
                 label="Usertag or Email"
@@ -40,6 +43,8 @@
             <Button
                 class="mt-5"
                 variant="primary"
+                type="submit"
+                onClick={() => handleFormSubmit()}
             >
                 Login
             </Button>

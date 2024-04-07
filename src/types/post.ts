@@ -1,15 +1,31 @@
-import type { Author } from './author';
+import type { Group } from './group';
+import type { User } from './user';
 
 export type Post = {
 	id: number;
-	title: string;
-	content: string;
-	originalPost?: Post;
-	parentPostId?: Post;
-	author: Author;
-	isRetweeted: boolean;
-	likesCount: number;
-	createdAt: Date;
-	updatedAt: Date;
-	deletedAt: Date;
+    content: string;
+    authorId: number;
+    author?: User;
+    likesCount?: number | null;
+    parentPostId?: number;
+    parentPost?: Post;
+    originalPostId?: number;
+    originalPost?: Post;
+    isRetweet?: boolean | null;
+    groupId?: number;
+    group?: Group;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
+    deletedAt?: Date | null;
 }
+
+export type CreatePost = Omit<Post, 
+	"id" 
+	| "author" 
+	| "likesCount" 
+	| "parentPost" 
+	| "originalPost" 
+	| "group" 
+	| "createdAt" 
+	| "updatedAt" 
+	| "deletedAt">;

@@ -6,9 +6,13 @@
 	import { page } from '$app/stores';
 	import { PostModal } from '$lib/components/ui/post';
 	import { Toaster } from 'svelte-french-toast';
+	import { QueryClient, QueryClientProvider } from '@sveltestack/svelte-query';
+
+	const queryClient = new QueryClient();
 
 </script>
 
+<QueryClientProvider client={queryClient}>
 <div class="min-w-screen min-h-screen h-full bg-background">
 	<Toaster />
 	<div class="h-full">
@@ -36,3 +40,4 @@
 		</div>
 	</div>
 </div>
+</QueryClientProvider>
