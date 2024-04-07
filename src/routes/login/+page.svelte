@@ -28,7 +28,7 @@
                 id="usertag-input"
                 label="Usertag or Email"
                 type="text"
-                value={usertag}
+                bind:value={usertag}
                 placeholder="Enter usertag or email"
                 required
             />
@@ -36,7 +36,7 @@
                 id="password-input"
                 label="Password"
                 type="password"
-                value={password}
+                bind:value={password}
                 placeholder="Enter password"
                 required
             />

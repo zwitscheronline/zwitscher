@@ -5,6 +5,7 @@ import { getAccessToken, getRefreshToken } from "../hooks/auth";
 import type { CreatePost } from "../types/post";
 import type { CreateGroup } from "../types/group";
 import type { CreateList } from "../types/list";
+import type { RequestOptions } from "../types/request-options";
 
 const baseConfig: AxiosRequestConfig = {
     baseURL: "http://localhost:8080",
@@ -14,10 +15,8 @@ export const userAPI = {
     fetchUser(id: number) {
         const route = UserRoutes.get(UserRouteKey.FETCH);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
-            params: {
-                id,
-            },
             headers: {
                 Authorization: getAccessToken(),
             },
@@ -41,50 +40,56 @@ export const userAPI = {
     updateUser(data: UpdateUser) {
         const route = UserRoutes.get(UserRouteKey.UPDATE);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", data.id.toString());
         return axios.put(route, data, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id: data.id,
             },
             ...baseConfig,
         
         });
     },
-    fetchUsers() {
+    fetchUsers(options?: RequestOptions) {
         const route = UserRoutes.get(UserRouteKey.FETCH_MULTIPLE);
         if (!route) throw new Error("Route not found");
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
+            params: {
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
+            },
             ...baseConfig,
         });
     },
-    fetchFollower(id: number) {
+    fetchFollower(id: number, options?: RequestOptions) {
         const route = UserRoutes.get(UserRouteKey.FETCH_FOLLOWER);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         
         });
     },
-    fetchFollowing(id: number) {
+    fetchFollowing(id: number, options?: RequestOptions) {
         const route = UserRoutes.get(UserRouteKey.FETCH_FOLLOWING);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         
@@ -93,12 +98,10 @@ export const userAPI = {
     follow(id: number) {
         const route = UserRoutes.get(UserRouteKey.FOLLOW);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
             },
             ...baseConfig,
         
@@ -107,66 +110,72 @@ export const userAPI = {
     unfollow(id: number, followerId: number) {
         const route = UserRoutes.get(UserRouteKey.UNFOLLOW);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
+        route.replace(":followerId", followerId.toString());
         return axios.delete(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                id,
-                followerId,
-            },
             ...baseConfig,
         });
     },
-    fetchUserPosts(id: number) {
+    fetchUserPosts(id: number, options?: RequestOptions) {
         const route = UserRoutes.get(UserRouteKey.FETCH_USER_POSTS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         
         });
     },
-    fetchUserLists(id: number) {
+    fetchUserLists(id: number, options?: RequestOptions) {
         const route = UserRoutes.get(UserRouteKey.FETCH_USER_LISTS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
     },
-    fetchUserGroups(id: number) {
+    fetchUserGroups(id: number, options?: RequestOptions) {
         const route = UserRoutes.get(UserRouteKey.FETCH_USER_GROUPS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
     },
-    fetchUserLikes(id: number) {
+    fetchUserLikes(id: number, options?: RequestOptions) {
         const route = UserRoutes.get(UserRouteKey.FETCH_USER_LIKES);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -190,22 +199,24 @@ export const postAPI = {
     fetch(id: number) {
         const route = PostRoutes.get(PostRouteKey.FETCH);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                id,
-            },
             ...baseConfig,
         });
     },
-    fetchMultiple() {
+    fetchMultiple(options?: RequestOptions) {
         const route = PostRoutes.get(PostRouteKey.FETCH_MULTIPLE);
         if (!route) throw new Error("Route not found");
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
+            },
+            params: {
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -220,28 +231,32 @@ export const postAPI = {
             ...baseConfig,
         });
     },
-    fetchComments(id: number) {
+    fetchComments(id: number, options?: RequestOptions) {
         const route = PostRoutes.get(PostRouteKey.FETCH_COMMENTS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
     },
-    fetchLikes(id: number) {
+    fetchLikes(id: number, options?: RequestOptions) {
         const route = PostRoutes.get(PostRouteKey.FETCH_LIKES);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -249,12 +264,10 @@ export const postAPI = {
     like(id: number) {
         const route = PostRoutes.get(PostRouteKey.LIKE);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
             },
             ...baseConfig,
         });
@@ -262,12 +275,10 @@ export const postAPI = {
     unlike(id: number) {
         const route = PostRoutes.get(PostRouteKey.UNLIKE);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.delete(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
             },
             ...baseConfig,
         });
@@ -288,35 +299,39 @@ export const groupAPI = {
     fetch(id: number) {
         const route = GroupRoutes.get(GroupRouteKey.FETCH);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                id,
-            },
             ...baseConfig,
         });
     },
-    fetchMultiple() {
+    fetchMultiple(options?: RequestOptions) {
         const route = GroupRoutes.get(GroupRouteKey.FETCH_MULTIPLE);
         if (!route) throw new Error("Route not found");
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
+            params: {
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
+            },
             ...baseConfig,
         });
     },
-    fetchMembers(id: number) {
+    fetchMembers(id: number, options?: RequestOptions) {
         const route = GroupRoutes.get(GroupRouteKey.FETCH_MEMBERS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -324,13 +339,11 @@ export const groupAPI = {
     addMember(id: number, userId: number) {
         const route = GroupRoutes.get(GroupRouteKey.ADD_MEMBER);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
+        route.replace(":userId", userId.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
-                userId,
             },
             ...baseConfig,
         });
@@ -338,13 +351,11 @@ export const groupAPI = {
     removeMember(id: number, userId: number) {
         const route = GroupRoutes.get(GroupRouteKey.REMOVE_MEMBER);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
+        route.replace(":userId", userId.toString());
         return axios.delete(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
-                userId,
             },
             ...baseConfig,
         });
@@ -352,25 +363,25 @@ export const groupAPI = {
     createJoinRequest(id: number) {
         const route = GroupRoutes.get(GroupRouteKey.CREATE_JOIN_REQUEST);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                id,
-            },
             ...baseConfig,
         });
     },
-    fetchJoinRequests(id: number) {
+    fetchJoinRequests(id: number, options?: RequestOptions) {
         const route = GroupRoutes.get(GroupRouteKey.FETCH_JOIN_REQUESTS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -378,13 +389,11 @@ export const groupAPI = {
     acceptJoinRequest(id: number, userId: number) {
         const route = GroupRoutes.get(GroupRouteKey.ACCEPT_JOIN_REQUEST);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
+        route.replace(":userId", userId.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
-                userId,
             },
             ...baseConfig,
         });
@@ -392,26 +401,26 @@ export const groupAPI = {
     rejectJoinRequest(id: number, userId: number) {
         const route = GroupRoutes.get(GroupRouteKey.REJECT_JOIN_REQUEST);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
+        route.replace(":userId", userId.toString());
         return axios.delete(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                id,
-                userId,
-            },
             ...baseConfig,
         });
     },
-    fetchPosts(id: number) {
+    fetchPosts(id: number, options?: RequestOptions) {
         const route = GroupRoutes.get(GroupRouteKey.FETCH_POSTS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -422,22 +431,24 @@ export const bookmarkAPI = {
     create(postId: number) {
         const route = BookmarkRoutes.get(BookmarkRouteKey.CREATE);
         if (!route) throw new Error("Route not found");
+        route.replace(":postId", postId.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                postId,
-            },
             ...baseConfig,
         });
     },
-    fetchMultiple() {
+    fetchMultiple(options?: RequestOptions) {
         const route = BookmarkRoutes.get(BookmarkRouteKey.FETCH_MULTIPLE);
         if (!route) throw new Error("Route not found");
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
+            },
+            params: {
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -445,12 +456,10 @@ export const bookmarkAPI = {
     delete(id: number) {
         const route = BookmarkRoutes.get(BookmarkRouteKey.DELETE);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.delete(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
             },
             ...baseConfig,
         });
@@ -471,35 +480,39 @@ export const listAPI = {
     fetch(id: number) {
         const route = ListRoutes.get(ListRouteKey.FETCH);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                id,
-            },
             ...baseConfig,
         });
     },
-    fetchMultiple() {
+    fetchMultiple(options?: RequestOptions) {
         const route = ListRoutes.get(ListRouteKey.FETCH_MULTIPLE);
         if (!route) throw new Error("Route not found");
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
+            params: {
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
+            },
             ...baseConfig,
         });
     },
-    fetchMembers(id: number) {
+    fetchMembers(id: number, options?: RequestOptions) {
         const route = ListRoutes.get(ListRouteKey.FETCH_MEMBERS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -507,13 +520,11 @@ export const listAPI = {
     addMember(id: number, userId: number) {
         const route = ListRoutes.get(ListRouteKey.ADD_MEMBER);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
+        route.replace(":userId", userId.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
-                userId,
             },
             ...baseConfig,
         });
@@ -521,13 +532,11 @@ export const listAPI = {
     removeMember(id: number, userId: number) {
         const route = ListRoutes.get(ListRouteKey.REMOVE_MEMBER);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
+        route.replace(":userId", userId.toString());
         return axios.delete(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
-                userId,
             },
             ...baseConfig,
         });
@@ -535,12 +544,10 @@ export const listAPI = {
     follow(id: number) {
         const route = ListRoutes.get(ListRouteKey.FOLLOW);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.post(route, {
             headers: {
                 Authorization: getAccessToken(),
-            },
-            params: {
-                id,
             },
             ...baseConfig,
         });
@@ -548,25 +555,25 @@ export const listAPI = {
     unfollow(id: number) {
         const route = ListRoutes.get(ListRouteKey.UNFOLLOW);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.delete(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
-            params: {
-                id,
-            },
             ...baseConfig,
         });
     },
-    fetchFollowers(id: number) {
+    fetchFollowers(id: number, options?: RequestOptions) {
         const route = ListRoutes.get(ListRouteKey.FETCH_FOLLOWERS);
         if (!route) throw new Error("Route not found");
+        route.replace(":id", id.toString());
         return axios.get(route, {
             headers: {
                 Authorization: getAccessToken(),
             },
             params: {
-                id,
+                page: options?.page ?? 1,
+                limit: options?.limit ?? 25,
             },
             ...baseConfig,
         });
@@ -577,7 +584,12 @@ export const authAPI = {
     login(usertag: string, password: string) {
         const route = AuthRoutes.get(AuthRouteKey.LOGIN);
         if (!route) throw new Error("Route not found");
-        return axios.post(route, { userTag: usertag, password }, baseConfig);
+        return axios.post(route, {
+            password,
+            userTag: usertag,
+        }, {
+            ...baseConfig
+        });
     },
     refreshAccessToken() {
         const route = AuthRoutes.get(AuthRouteKey.REFRESH_ACCESS_TOKEN);
